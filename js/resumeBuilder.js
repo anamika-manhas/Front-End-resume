@@ -79,7 +79,7 @@ work.display();
                 "title": "Movie Website",
                 "dates": "2016",
                 "description": "It is made by using Python.",
-                "image": ["images/1.PNG"]
+                "images": ["images/1.PNG"]
             },
             {
                 "title": "portfolio",
@@ -90,16 +90,20 @@ work.display();
          ]
     };
     projects.display = function() {
-    for (project in projects.projects) {
-        $("#projects").append(HTMLprojectStart);
-        $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.projects[project].title), HTMLprojectDates.replace("%data%", projects.projects[project].dates) + HTMLprojectDescription.replace("%data%", projects.projects[project].description));
-
-        if (projects.projects[project].images.length > 0) {
-            for (var image in projects.projects[project].images)
-                $(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.projects[project].images[image]));
+       for (var x = 0; x < projects.projects.length; x++)
+        {
+    $("#projects").append(HTMLprojectStart);
+    var formattedTitle =HTMLprojectTitle.replace("%data%", projects.projects[x].title);
+    var formattedDates =HTMLprojectDates.replace("%data%", projects.projects[x].dates);
+    var formattedTitleDates =formattedTitle + formattedDates ;
+    $(".project-entry:last").append(formattedTitleDates);
+    var formattedDescription =HTMLprojectDescription.replace("%data%", projects.projects[x].description);
+     $(".project-entry:last").append(formattedDescription);
+    var formattedImage =HTMLprojectImage.replace("%data%", projects.projects[x].images);
+     $(".project-entry:last").append(formattedImage);
         }
-    }
-}; 
+    };
+                      
  projects.display();
 
 var education ={
