@@ -53,7 +53,7 @@ var work = {
         "title":"student",
         "dates":"2015-present",
         "location":"Patila road,Rajpura",
-        "Description":"I am doing my degree here.",
+        "description":"I am doing my degree here.",
     }]
 };
 work.display=function(){
@@ -79,31 +79,27 @@ work.display();
                 "title": "Movie Website",
                 "dates": "2016",
                 "description": "It is made by using Python.",
-                "image": "images/1.PNG"
+                "image": ["images/1.PNG"]
             },
             {
                 "title": "portfolio",
                 "dates": "2016",
                 "description": "It is made by using Bootstrap and is responsive.",
-                "image": "images/2.PNG" 
+                "images": ["images/2.PNG"] 
             } 
          ]
     };
     projects.display = function() {
-        for(var x=0;x<projects.projects.length;x++)
-        {
-    $("#projects").append(HTMLprojectStart);
-    var formattedTitle =HTMLprojectTitle.replace("%data%", projects.projects[x].title);
-    var formattedDates =HTMLprojectDates.replace("%data%", projects.projects[x].dates);
-    var formattedTitleDates =formattedTitle + formattedDates ;
-    $(".project-entry:last").append(formattedTitleDates);
-    var formattedDescription =HTMLprojectDescription.replace("%data%", projects.projects[x].description);
-     $(".project-entry:last").append(formattedDescription);
-    var formattedImage =HTMLprojectImage.replace("%data%", projects.projects[x].image);
-     $(".project-entry:last").append(formattedImage);
+    for (project in projects.projects) {
+        $("#projects").append(HTMLprojectStart);
+        $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.projects[project].title), HTMLprojectDates.replace("%data%", projects.projects[project].dates) + HTMLprojectDescription.replace("%data%", projects.projects[project].description));
+
+        if (projects.projects[project].images.length > 0) {
+            for (var image in projects.projects[project].images)
+                $(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.projects[project].images[image]));
         }
-    };
-                      
+    }
+}; 
  projects.display();
 
 var education ={
@@ -113,7 +109,7 @@ var education ={
             "location" : "Rajpura,Patiala road",
             "degree" : "Bachelors of Engineering",
             "majors" : ["CS"],
-            "dates" :2015,
+            "dates" :"2015",
             "url" :"www.chitkara.edu.in"
             
         }
@@ -123,7 +119,7 @@ var education ={
         {
             "title" : "intro to programming",
             "school" : "Udacity",
-            "dates" : 2016,
+            "dates" : "2016",
             "url" : "https://www.udacity.com/course/intro-to-programming-nanodegree--nd000"
         }
     ]
