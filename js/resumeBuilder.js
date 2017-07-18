@@ -99,7 +99,7 @@ work.display();
     $(".project-entry:last").append(formattedTitleDates);
     var formattedDescription =HTMLprojectDescription.replace("%data%", projects.projects[x].description);
      $(".project-entry:last").append(formattedDescription);
-    var formattedImage =HTMLprojectImage.replace("%data%", projects.projects[x].images);
+    var formattedImage =HTMLprojectImage.replace("%data%", projects.projects[x].images[0]);
      $(".project-entry:last").append(formattedImage);
         }
     };
